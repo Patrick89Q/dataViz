@@ -1,6 +1,13 @@
 ---
 title: "Data analysis with Quarto"
 date: today
-
 ---
+
+
+# Introduction
+
+
+
+
+# Data visualization
 
