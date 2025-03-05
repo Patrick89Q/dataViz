@@ -1,0 +1,6 @@
+---
+title: "Data analysis with Quarto"
+date: today
+
+---
+
