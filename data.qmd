@@ -6,8 +6,47 @@ date: today
 
 # Introduction
 
+```{r}
+library(tidyverse)
+library(echarts4r)
 
+```
 
 
 # Data visualization
 
+
+```{r}
+library(echarts4r)
+library(dplyr)
+library(tidyverse)
+# Sample data
+data <- data.frame(
+  category = c("A", "B", "C", "D"),
+  start_value = c(10, 15, 8, 20),
+  end_value = c(25, 12, 18, 30)
+)
+
+# Prepare data for lines
+lines_data <- data %>%
+  mutate(
+    line_x = list(c(start_value, end_value)),
+    line_y = list(rep(category, 2))
+  ) %>%
+  select(category, line_x, line_y) %>%
+  tidyr::unnest(cols = c(line_x, line_y))
+
+# Create the chart
+data %>%
+  e_charts(category) %>%
+  e_scatter(start_value, symbol_size = 10, name = "Start") %>%
+  e_scatter(end_value, symbol_size = 10, name = "End")  %>%
+  e_line(
+    data = lines_data,
+    line_x,
+    line_y,
+    group = category,
+    symbol = "none",
+    name = "Change"
+  ) 
+```
